@@ -1,5 +1,29 @@
 # Make Eufy smart again!
 
+## Aidan's Notes
+After completing the project with a robovac 30, I want to add a few notes on how to do it.
+First, install the Arduino IDE, then follow [these or similar instructions](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/). Also, I am not entirely sure it is necessary, but I installed additional drivers [here](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) (just search for something along the lines of cp2102 drivers).
+
+With this all set up, just wire the IR led and IR receiver according to the below instructions, plug the NodeMCU V1 into your computer, install the necessary dependencies such as Blynk, update the settings of the board to match the below instructions, then upload to the board.
+
+For the Robovac 30, the IR codes were different, so I had to figure them out and modify the original code to include them. I found the codes by using `File->Examples->IRremoteESP8266->IRrecvDumpV2` after installing this library. This provided boilerplate code for reading IR signals from the Eufy remote. Remember to lookup the exact pins on the Arduino IDE that map to the ones on the NodeMCU board. I added the list below.
+
+```
+static const uint8_t D0 = 16;
+static const uint8_t D1 = 5;
+static const uint8_t D2 = 4;
+static const uint8_t D3 = 0;
+static const uint8_t D4 = 2;
+static const uint8_t D5 = 14;
+static const uint8_t D6 = 12;
+static const uint8_t D7 = 13;
+static const uint8_t D8 = 15;
+static const uint8_t D9 = 3;
+static const uint8_t D10 = 1;
+```
+
+## Original Instructions
+
 Make a internet enabled IR controller for EUFY vacuum cleaners. Recent models of EUFY and Roomba vacuum cleaners include smartphone control, and my robot was feeling left out. So - lets make EUFY smart again!
 
 ![Smart EUFY](/Images/Complete_Eufy.jpg)
